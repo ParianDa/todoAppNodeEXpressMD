@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <ul>
+        <% todos.forEach(todo => { %>
+            <li><%= todo.title %></li>
+        <% }) %>
+    </ul>
+    <a href="/todos/new">Add New Todo</a>
+</body>
+</html>

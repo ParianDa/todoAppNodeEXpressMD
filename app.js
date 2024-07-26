@@ -44,6 +44,27 @@ app.post('/todos', async (req,res) => {
     }
 })
 
+app.get('/todos/:id/edit', async (req,res) => {
+    const todo = await Todo.findById(req.params.id)
+    res.render('edit',{todo})
+})
+
+app.put('/todos/:id', async (req,res) => {
+    await Todo.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        completed: req.body.completed === 'on'
+    });
+    res.redirect('/')
+})
+
+//edit a todo
+
+//delete todo
+app.delete('/todos/:id', async (req,res) => {
+    await Todo.findByIdAndDelete(req.params.id);
+    res.redirect("/");
+})
+
 
 app.listen(3000, () => {
     console.log("Todo App is running on http://localhost:3000")

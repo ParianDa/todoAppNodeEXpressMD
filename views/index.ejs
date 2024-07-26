@@ -7,8 +7,17 @@
     <h1>Todo List</h1>
     <ul>
         <% todos.forEach(todo => { %>
-            <li><%= todo.title %></li>
-        <% }) %>
+            <li>
+                <form action="/todos/<%= todo._id %>?_method=PUT" method="POST">
+                    <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : ''%> onChange="this.form.submit()">
+                    <%= todo.title %>
+                    <a href="/todos/<%= todo._id %>/edit">Edit</a>
+                </form>
+                <form action = "/todos/<%=todo._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+            <% }); %>
     </ul>
     <a href="/todos/new">Add New Todo</a>
 </body>
